@@ -3,16 +3,25 @@
   <head>
     <title></title>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelector('form').onsubmit = function () {
-          const name = document.querySelector('#name').value;
+      // Traditional function annotation
+      // document.addEventListener('DOMContentLoaded', function () {
+      //   document.querySelector('form').onsubmit = function () {
+      //     const name = document.querySelector('#name').value;
+      //     alert(`Hello, ${name}`);
+      //   };
+      // });
+
+      // Arrow function
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('myForm').onsubmit = () => {
+          const name = document.getElementById('name').value;
           alert(`Hello, ${name}`);
         };
       });
     </script>
   </head>
   <body>
-    <form>
+    <form id="myForm">
       <input autofocus id="name" placeholder="Your name" type="text" />
       <input type="submit" />
     </form>
