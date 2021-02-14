@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="EN">
+  <head>
+    <title>Current weather</title>
+  </head>
+  <body>
+    <div id="weather">
+      <div id="description"></div>
+      <h1 id="temp"></h1>
+      <div id="location"></div>
+    </div>
+    <script>
+      function fetchWeather(cityName) {
+        // console.log(cityName);
+        var key = 'f6d782216f36411d6f33f609c246f6b8';
+        var url =
+          'https://api.openweathermap.org/data/2.5/weather?q=' +
+          cityName +
+          '&units=metric' +
+          '&appid=' +
+          key;
+
+        fetch(url)
+          .then(function (resp) {
+            console.log(resp.json());
+            return resp.json();
+          })
+          //   .then()
+          .catch(function () {
+            // console.log('Hey there is an error');
+          });
+      }
+
+      function drawWeather(data) {}
+
+      window.onload = function () {
+        fetchWeather('Coquitlam');
+      };
+    </script>
+  </body>
+</html>

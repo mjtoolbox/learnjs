@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="EN">
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <script>
+      var person = {
+        firstName: 'John',
+        lastName: 'Doe',
+        age: 50,
+        eyecolor: 'brown',
+      };
+
+      console.log(person.firstName);
+
+      class Person{
+          constructor(name, dob){
+              this.name = name;
+              this.dob = dob;
+          }
+          greeting(){
+              return "Hello " + this.name;
+          }
+      }
+
+      var aPerson = new Person("MJ", "January 29, 2020");
+      console.log(aPerson.greeting());
+
+    </script>
+  </body>
+</html>
