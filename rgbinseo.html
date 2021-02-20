@@ -1,0 +1,25 @@
+<html>
+  <head> </head>
+  <body>
+    <h1 id="dothis">uhh hi</h1>
+    <button onclick="hehe()">hehe</button>
+  </body>
+  <script>
+    var s = 0;
+    function hehe() {
+      if ((s = 0)) {
+        while (s < 255) {
+          s += 5;
+          document.getElementById('dothis').style.color =
+            'rgb(' + s + ',' + s + ',' + s + ')';
+        }
+      } else {
+        while (s > 0) {
+          s -= 3;
+          document.getElementById('dothis').style.color =
+            'rgb(' + s + ',' + s + ',' + s + ')';
+        }
+      }
+    }
+  </script>
+</html>
