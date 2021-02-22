@@ -3,21 +3,15 @@
   <head>
     <title></title>
     <script>
-      var names = [];
       var name;
       document.addEventListener('DOMContentLoaded', function () {
         // This is where we add our form handling logic
         document.querySelector('form').onsubmit = function () {
           name = document.querySelector('#name').value;
-          names.push(name);
+          document.getElementById('display').innerHTML = name;
+          return false;
         };
       });
-
-      function display() {
-        document.getElementById('display').innerHTML = document.getElementById(
-          'name'
-        ).value;
-      }
     </script>
   </head>
   <body>
@@ -28,8 +22,8 @@
         placeholder="Type your name here"
         id="name"
       />
+      <input type="submit" />
     </form>
-    <input type="submit" onclick="display()" />
     <div id="display"></div>
   </body>
 </html>
