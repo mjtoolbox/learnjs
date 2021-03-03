@@ -3,32 +3,37 @@ document.addEventListener('DOMContentLoaded', function () {
   const submit = document.querySelector('#submit');
   const newTask = document.querySelector('#task');
 
-  // disable button until user type something
-  submit.disable = true;
+  // Disable submit button by default:
+  submit.disabled = true;
 
   // Listen for input to be typed into the input field
   newTask.onkeyup = () => {
     if (newTask.value.length > 0) {
-      submit.disable = false;
+      submit.disabled = false;
     } else {
-      submit.disable = true;
+      submit.disabled = true;
     }
   };
 
-  // Handle form submission
+  // Listen for submission of form
   document.querySelector('form').onsubmit = () => {
-    // find the task the user submitted
+    // Find the task the user just submitted
     const task = newTask.value;
 
-    // Create a list item for new task and add task to it
+    // Create a list item for the new task and add the task to it
     const li = document.createElement('li');
     li.innerHTML = task;
 
-    // Add new element to unordered list
-    doucument.querySelector('#tasks').append(li);
+    // Add new element to our unordered list:
+    document.querySelector('#tasks').append(li);
 
+    // Clear out input field:
     newTask.value = '';
-    submit.disable = true;
+
+    // Disable the submit button again:
+    submit.disabled = true;
+
+    // Stop form from submitting
     return false;
   };
 });
