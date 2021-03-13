@@ -1,8 +1,8 @@
 var counter;
-var handler = setInterval(countdown, 1000);
 var displayCounter;
 var startCounter;
 var startbtn;
+var handler;
 
 // Set up
 function start() {
@@ -35,9 +35,11 @@ function playAudio() {
   audio.play();
 }
 
+// Initial setup
 document.addEventListener('DOMContentLoaded', function () {
   displayCounter = document.getElementById('counter');
   startCounter = document.getElementById('time');
   startbtn = document.getElementById('start');
   startbtn.addEventListener('click', start);
+  handler = setInterval(countdown, 1000);
 });
