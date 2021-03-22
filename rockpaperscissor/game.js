@@ -4,8 +4,13 @@ var btnPaper;
 var countObj;
 var resultObj;
 var scoreObj;
+var startObj;
+var counterObj;
 var score = 0;
+var counter = 6;
 var botSelection;
+var handler;
+var userSelection;
 document.addEventListener('DOMContentLoaded', function () {
   // Declare DOM objects
   btnRock = document.getElementById('rock'); //0
@@ -14,11 +19,19 @@ document.addEventListener('DOMContentLoaded', function () {
   countObj = document.getElementById('count');
   resultObj = document.getElementById('result');
   scoreObj = document.getElementById('score');
+  startObj = document.getElementById('start');
+  counterObj = document.getElementById('counter');
+
+  // disable them
+  btnRock.disabled = true;
+  btnPaper.disabled = true;
+  btnScissor.disabled = true;
 
   // Add Listeners
   btnRock.addEventListener('click', getResult);
   btnPaper.addEventListener('click', getResult);
   btnScissor.addEventListener('click', getResult);
+  startObj.addEventListener('click', start);
 
   document.getElementById('myform').onsubmit = startOver;
 
@@ -28,17 +41,63 @@ document.addEventListener('DOMContentLoaded', function () {
   // Load from localstorage
   scoreObj.innerHTML = localStorage.getItem('score');
 
+  function updateScore(score) {
+    localStorage.setItem('score', score);
+    scoreObj.innerHTML = localStorage.getItem('score');
+  }
+
+  function start() {
+    //hide bring it on
+    startObj.style.visibility = 'hidden';
+    //enable buttons
+    btnRock.disabled = false;
+    btnPaper.disabled = false;
+    btnScissor.disabled = false;
+
+    //start count
+    handler = setInterval(countdown, 1000);
+  }
+
+  function countdown() {
+    counter--;
+    counterObj.innerHTML =
+      'Please select your choice in ' + counter + ' seconds!';
+    if (counter === 0) {
+      clearInterval(handler);
+
+      if (userSelection != null) {
+        // disable buttons
+        btnRock.disabled = true;
+        btnPaper.disabled = true;
+        btnScissor.disabled = true;
+      } else {
+        // If no user selection, display "too slow, you lost"
+        btnRock.disabled = false;
+        btnPaper.disabled = false;
+        btnScissor.disabled = false;
+        handler = setInterval(countdown, 1000);
+      }
+    }
+  }
+
   function startOver() {
-    localStorage.setItem('score', 0);
-    score = localStorage.getItem('score');
+    updateScore(0);
+    counter = 5;
+    startObj.style.visibility = 'visible';
   }
 
   function getResult(event) {
     randomPicker();
-    let userSelection = event.target.id;
+    userSelection = event.target.id;
     console.log('User:' + event.target.id);
     determineWinner(botSelection, userSelection);
-    scoreObj.innerHTML = localStorage.getItem('score');
+    // reset for next round, enable buttons, restart counter
+    btnRock.disabled = false;
+    btnPaper.disabled = false;
+    btnScissor.disabled = false;
+    clearInterval(handler);
+    counter = 5;
+    handler = setInterval(countdown, 1000);
   }
 
   function randomPicker() {
@@ -52,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function () {
       botSelection = 'scissor';
     }
     console.log('Bot:' + botSelection);
-    // return botSelection;
   }
 
   // 0, 1, 2, rock, scissor, paper
@@ -95,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
         break;
     }
     console.log('Result : ' + result);
-    localStorage.setItem('score', score);
+    updateScore(score);
     resultObj.innerHTML = result;
   }
 });
