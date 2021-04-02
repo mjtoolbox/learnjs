@@ -25,13 +25,21 @@
             console.log(resp.json());
             return resp.json();
           })
-          //   .then()
+          .then(function (data) {
+            drawWeather(data);
+          })
           .catch(function () {
             // console.log('Hey there is an error');
           });
       }
 
-      function drawWeather(data) {}
+      function drawWeather(data) {
+        document.getElementById('description').innerHTML =
+          data.weather[0].description;
+        document.getElementById('temp').innerHTML =
+          Math.round(parseFloat(data.main.temp)) + '&deg;';
+        document.getElementById('location').innerHTML = data.name;
+      }
 
       window.onload = function () {
         fetchWeather('Coquitlam');
