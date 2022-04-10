@@ -6,12 +6,19 @@
   <body>
     <h1 id="number"></h1>
     <button onclick="count()">Count</button>
+    <h2 id="now"></h2>
     <script>
       var counter = 0;
       function count() {
         counter++;
         document.getElementById('number').innerHTML = counter;
       }
+
+      var date = new Date();
+      //Format  to make 01/24/2022
+      var newformat =
+        date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+      document.getElementById('now').innerHTML = newformat;
     </script>
   </body>
 </html>
