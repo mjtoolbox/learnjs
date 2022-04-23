@@ -21,15 +21,15 @@
           key;
 
         fetch(url)
-          .then(function (resp) {
-            console.log(resp.json());
-            return resp.json();
+          .then(function (response) {
+            return response.json();
           })
+          // .then((response) => response.json())
           .then(function (data) {
             drawWeather(data);
           })
-          .catch(function () {
-            // console.log('Hey there is an error');
+          .catch(function (error) {
+            console.log('Hey there is an error' + error);
           });
       }
 

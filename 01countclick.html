@@ -19,6 +19,27 @@
       var newformat =
         date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
       document.getElementById('now').innerHTML = newformat;
+
+      // Option 1
+      // Function & Arrow function
+      // function sayHello() {
+      //   return 'hello';
+      // }
+
+      // Option 2
+      // const sayHello = function () {
+      //   return 'hello';
+      // };
+
+      // Option 3
+      // sayHello = () => {
+      //   return 'hello';
+      // };
+
+      // Option 4
+      sayHello = () => 'hello';
+
+      console.log(sayHello());
     </script>
   </body>
 </html>
